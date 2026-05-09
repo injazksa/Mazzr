@@ -867,8 +867,15 @@ export default function App() {
                            animate={{ opacity: 1, scale: 1 }}
                            exit={{ opacity: 0, scale: 0.95 }}
                            key={deal.id}
-                           className="bg-slate-50 rounded-2xl p-5 border border-slate-200/60 shadow-sm hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_12px_30px_-10px_rgba(81,24,69,0.15)] hover:border-purple-200 transition-all duration-300 flex flex-col relative overflow-hidden group"
+                           className={`bg-slate-50 rounded-2xl p-5 border shadow-sm hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_12px_30px_-10px_rgba(81,24,69,0.15)] transition-all duration-300 flex flex-col relative overflow-hidden group ${
+                             deal.brand === 'AliExpress' 
+                               ? 'border-orange-200 ring-2 ring-orange-100 ring-opacity-50' 
+                               : 'border-slate-200/60 hover:border-purple-200'
+                           }`}
                          >
+                           {deal.brand === 'AliExpress' && (
+                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-500 z-30" />
+                           )}
                            <SchemaMarkup deal={deal} />
                            
                            {/* Glassmorphism gradient effect on hover */}
@@ -881,7 +888,11 @@ export default function App() {
                                    {deal.brand}
                                  </div>
                                </div>
-                               <div className="bg-orange-50 text-orange-600 px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wider relative z-20 shadow-sm transition-transform group-hover:scale-105">
+                               <div className={`px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wider relative z-20 shadow-sm transition-transform group-hover:scale-105 ${
+                                 deal.brand === 'AliExpress' 
+                                   ? 'bg-orange-600 text-white' 
+                                   : 'bg-orange-50 text-orange-600'
+                               }`}>
                                  {deal.discount}
                                </div>
                                <div className="bg-purple-50 border border-purple-100 text-purple-700 px-3 py-1 rounded-bl-xl rounded-tr-xl text-[10px] font-black uppercase tracking-wider shadow-sm absolute -top-5 -right-5 group-hover:top-0 group-hover:right-0 transition-all duration-300">
