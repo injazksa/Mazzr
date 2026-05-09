@@ -203,7 +203,10 @@ const SchemaMarkup = ({ deal }: { deal: typeof DEALS[0] }) => {
     "@context": "https://schema.org/",
     "@type": "Product",
     "name": deal.titleEn,
+    "image": "https://mazzr.com/logo.png",
     "description": deal.descEn,
+    "sku": `MAZZR-${deal.id}`,
+    "mpn": `MAZZR-MPN-${deal.id}`,
     "brand": {
       "@type": "Brand",
       "name": deal.brand
@@ -211,18 +214,33 @@ const SchemaMarkup = ({ deal }: { deal: typeof DEALS[0] }) => {
     "aggregateRating": {
       "@type": "AggregateRating",
       "ratingValue": deal.rating,
-      "reviewCount": deal.reviews
+      "reviewCount": deal.reviews,
+      "bestRating": "5",
+      "worstRating": "1"
     },
     "offers": {
       "@type": "Offer",
       "url": deal.link,
       "priceCurrency": "USD",
       "price": "0.00",
+      "priceValidUntil": "2027-12-31",
       "itemCondition": "https://schema.org/NewCondition",
       "availability": "https://schema.org/InStock",
       "seller": {
         "@type": "Organization",
-        "name": deal.brand
+        "name": "Mazzr"
+      }
+    },
+    "review": {
+      "@type": "Review",
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": deal.rating,
+        "bestRating": "5"
+      },
+      "author": {
+        "@type": "Organization",
+        "name": "Mazzr Team"
       }
     }
   };
