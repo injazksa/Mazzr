@@ -1201,6 +1201,7 @@ export default function App() {
                     {isAr 
                       ? "اشترك في قائمتنا البريدية للحصول على أكواد خصم حصرية تصل إلى 90٪ وأدوات ذكية جديدة قبل الجميع." 
                       : "Join our mailing list to get exclusive promo codes up to 90% off and new smart tools before anyone else."
+                    }
                   </p>
                   <form 
                     className="flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto" 
