@@ -800,6 +800,9 @@ export default function App() {
 
              {/* MAIN CONTENT AREA */}
              <section className="max-w-7xl mx-auto px-4 pb-24">
+               {/* TOP AD SENSE (Below Header) */}
+               <AdSlot position="Top" lang={lang} />
+
                {/* CATEGORY RIBBON */}
                <nav className="sticky top-[4rem] z-30 bg-white/90 backdrop-blur-md mb-8 overflow-x-auto pb-4 pt-4 scrollbar-hide -mx-4 px-4 border-b border-slate-100 shadow-sm" aria-label="Category Navigation">
                  <div className="flex items-center gap-3 w-max">
@@ -932,6 +935,8 @@ export default function App() {
 
                              <a
                                href={deal.link}
+                               target="_blank"
+                               rel="nofollow noopener noreferrer"
                                onClick={(e) => handleGetDeal(e, deal.link, deal.code)}
                                className={`w-full font-bold py-3.5 rounded-xl text-center text-sm transition-all shadow-sm flex items-center justify-center gap-2 group/btn mb-4 ${
                                  deal.isFlash 
