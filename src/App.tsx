@@ -250,7 +250,7 @@ const AdSlot = ({ position, lang }: { position: string, lang: Lang }) => {
     <div className="w-full my-6 flex justify-center items-center overflow-hidden">
       <ins className="adsbygoogle"
            style={{ display: 'block', width: '100%' }}
-           data-ad-client="ca-pub-0000000000000000"
+           data-ad-client="ca-pub-7085619463240604"
            data-ad-slot="0000000000"
            data-ad-format="auto"
            data-full-width-responsive="true"></ins>
