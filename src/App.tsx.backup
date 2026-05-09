@@ -188,64 +188,6 @@ const CATEGORIES = [
 
 const DEALS_RAW = dealsData;
 
-// Native Ad Card Component
-const NativeAdCard = ({ lang, position }: { lang: Lang; position: 'middle' | 'bottom' }) => {
-  const directLink = 'https://bony-teaching.com/b.3HV/0mPO3QpavObrmTV/JPZcDT0L3/MbDyMVxQNyTJQT1uL-Twc/wtMszaED1/NyDdkc';
-  
-  return (
-    <motion.article
-      initial={{ opacity: 0, scale: 0.95 }}
-      whileInView={{ opacity: 1, scale: 1 }}
-      viewport={{ once: true }}
-      className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-5 border border-amber-200 shadow-sm hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_12px_30px_-10px_rgba(217,119,6,0.15)] transition-all duration-300 flex flex-col relative overflow-hidden group ring-2 ring-amber-100 ring-opacity-50"
-    >
-      <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-amber-400 to-orange-500 z-30" />
-      
-      <div className="relative z-10 flex flex-col h-full">
-        <div className="flex justify-between items-start mb-3">
-          <div className="px-3 py-1 bg-white border border-amber-200 rounded-lg text-xs font-black text-amber-700 shadow-sm">
-            {lang === 'ar' ? 'رعاية مميزة' : 'Premium Sponsor'}
-          </div>
-          <div className="px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wider bg-orange-600 text-white shadow-sm">
-            {lang === 'ar' ? 'عرض حصري' : 'EXCLUSIVE'}
-          </div>
-        </div>
-        
-        <h3 className="font-bold text-lg mb-1 leading-snug text-amber-900">
-          {lang === 'ar' ? 'أداة تحليل الأداء المتقدمة' : 'Advanced Performance Analytics Tool'}
-        </h3>
-        
-        <p className="text-sm mb-4 flex-grow leading-relaxed text-amber-800">
-          {lang === 'ar' 
-            ? 'اكتشف أداة احترافية لتحليل أداء جهازك بدقة عالية. متوفرة الآن بخصم حصري للزوار الكرام.' 
-            : 'Discover a professional tool to analyze your device performance with high precision. Now available with exclusive discount for our valued visitors.'}
-        </p>
-        
-        <a
-          href={directLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="w-full font-bold py-3.5 rounded-xl text-center text-sm transition-all shadow-sm flex items-center justify-center gap-2 group/btn bg-orange-600 hover:bg-orange-500 text-white shadow-[0_4px_14px_rgba(234,88,12,0.3)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.4)]"
-        >
-          {lang === 'ar' ? 'استكشف الآن' : 'Explore Now'}
-          <ArrowRight className={`w-4 h-4 transition-transform group-hover/btn:translate-x-1 ${lang === 'ar' ? 'rotate-180 group-hover/btn:-translate-x-1' : ''}`} />
-        </a>
-        
-        <div className="pt-3 border-t border-amber-100 flex items-center justify-between text-[10px] font-bold text-amber-600 bg-transparent mt-auto">
-          <div className="flex items-center gap-1.5">
-            <ShieldCheck className="w-4 h-4" /> 
-            {lang === 'ar' ? 'موثوق من الشركاء' : 'Trusted Partner'}
-          </div>
-          <div className="flex items-center gap-1">
-            <span className="w-1.5 h-1.5 rounded-full bg-orange-500 animate-pulse"></span>
-            <span>{lang === 'ar' ? 'فعال الآن' : 'Active Now'}</span>
-          </div>
-        </div>
-      </div>
-    </motion.article>
-  );
-};
-
 // Add deterministic random claimed percentage based on deal ID for the new progress layout
 const DEALS = DEALS_RAW.map(d => {
   const hr = new Date().getHours();
@@ -1148,11 +1090,6 @@ export default function App() {
                      <SmartDealMatcher lang={lang} onGetDeal={handleGetDeal} />
                    </div>
 
-                   {/* NATIVE AD CARD - MIDDLE SECTION */}
-                   <div className="mt-16 mb-16">
-                     <NativeAdCard lang={lang} position="middle" />
-                   </div>
-
                  </div>
                </div>
              </section>
@@ -1165,42 +1102,17 @@ export default function App() {
                <AdSlot position="Bottom" lang={lang} />
              </div>
              
-             {/* FOOTER AD - BEFORE NEWSLETTER */}
-             <div className="max-w-7xl mx-auto px-4 mb-12">
-               <div className="bg-gradient-to-r from-slate-100 to-slate-50 rounded-2xl p-8 border border-slate-200 shadow-sm">
-                 <div className="text-center">
-                   <p className="text-xs font-bold text-slate-500 uppercase tracking-wider mb-2">{lang === 'ar' ? 'رعاية' : 'Sponsored'}</p>
-                   <h3 className="text-xl font-bold text-slate-900 mb-3">
-                     {lang === 'ar' ? 'تحسين أداء جهازك بسهولة' : 'Boost Your Device Performance Easily'}
-                   </h3>
-                   <p className="text-slate-600 mb-4 max-w-2xl mx-auto">
-                     {lang === 'ar' 
-                       ? 'استخدم أداتنا المتقدمة للحصول على أفضل أداء لجهازك. متوفرة حصرياً للزوار الكرام.' 
-                       : 'Use our advanced tool to get the best performance for your device. Available exclusively for our valued visitors.'}
-                   </p>
-                   <a 
-                     href="https://bony-teaching.com/b.3HV/0mPO3QpavObrmTV/JPZcDT0L3/MbDyMVxQNyTJQT1uL-Twc/wtMszaED1/NyDdkc" 
-                     target="_blank" 
-                     rel="noopener noreferrer"
-                     className="inline-block bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-md hover:shadow-lg"
-                   >
-                     {lang === 'ar' ? 'جرب الآن مجاناً' : 'Try Now Free'}
-                   </a>
-                 </div>
-               </div>
-             </div>
-             
              {/* NEWSLETTER SECTION */}
              <section className="bg-purple-900 border-t border-purple-800 text-white rounded-t-3xl mt-12 py-16 px-4 relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-12 opacity-10 pointer-events-none">
                   <Zap className="w-64 h-64" />
                 </div>
                 <div className="max-w-4xl mx-auto text-center relative z-10">
-                  <h2 className="text-3xl font-black mb-4">{isAr ? "لا تفوت أي عرض سري أو أداة جديدة!" : "Never Miss a Secret Deal or New Tool!"}</h2>
+                  <h2 className="text-3xl font-black mb-4">{isAr ? "لا تفوت أي عرض سري!" : "Never Miss a Secret Deal!"}</h2>
                   <p className="text-purple-100 font-medium text-lg mb-8 max-w-2xl mx-auto">
                     {isAr 
-                      ? "اشترك في قائمتنا البريدية للحصول على أكواد خصم حصرية تصل إلى 90٪ وأدوات ذكية جديدة قبل الجميع." 
-                      : "Join our mailing list to get exclusive promo codes up to 90% off and new smart tools before anyone else."
+                      ? "اشترك في قائمتنا البريدية للحصول على أكواد خصم حصرية تصل إلى 90٪ قبل الجميع." 
+                      : "Join our mailing list to get exclusive promo codes up to 90% off before anyone else."}
                   </p>
                   <form 
                     className="flex flex-col sm:flex-row gap-3 justify-center max-w-xl mx-auto" 
@@ -1214,7 +1126,7 @@ export default function App() {
                         headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
                         body: new URLSearchParams(formData as any).toString()
                       }).then(() => {
-                        alert(isAr ? 'تم الاشتراك بنجاح! سيتم إرسال الأكواد الحصرية إلى بريدك قريباً.' : 'Successfully subscribed! Exclusive codes will be sent to your email soon.');
+                        alert(isAr ? 'تم الاشتراك بنجاح!' : 'Successfully subscribed!');
                         (e.target as HTMLFormElement).reset();
                       }).catch((error) => alert(error));
                     }}
