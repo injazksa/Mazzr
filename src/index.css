@@ -1,0 +1,61 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@800&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --font-sans: "Inter", ui-sans-serif, system-ui, sans-serif;
+  --font-arabic: "Cairo", ui-sans-serif, system-ui, sans-serif;
+  --font-montserrat: "Montserrat", sans-serif;
+
+  /* Re-mapping purple to the Mazzr Purple palette */
+  --color-purple-50: #FBF7FB;
+  --color-purple-100: #F2E3EE;
+  --color-purple-200: #E1C1D9;
+  --color-purple-300: #C996BC;
+  --color-purple-400: #AB659B;
+  --color-purple-500: #511845;
+  --color-purple-600: #4B0082;
+  --color-purple-700: #3F006A;
+  --color-purple-800: #2C004B;
+  --color-purple-900: #1D0033;
+  --color-purple-950: #0F001C;
+
+  /* Re-mapping fuchsia for gradients */
+  --color-fuchsia-300: #8A2BE2;
+
+  /* Re-mapping slate to the Dark/Light palette requested */
+  --color-slate-50: #F8F9FA;
+  --color-slate-100: #F1F3F5;
+  --color-slate-200: #E9ECEF;
+  --color-slate-300: #DEE2E6;
+  --color-slate-400: #CED4DA;
+  --color-slate-500: #ADB5BD;
+  --color-slate-600: #6C757D;
+  --color-slate-700: #495057;
+  --color-slate-800: #343A40;
+  --color-slate-900: #1A1A1B;
+  --color-slate-950: #0D0D0E;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar to match dark deep navy/purple theme */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-purple-950); 
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-purple-800); 
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-purple-600); 
+}

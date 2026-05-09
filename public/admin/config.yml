@@ -1,0 +1,39 @@
+backend:
+  name: git-gateway
+  branch: main
+
+# This logo will show on the login page
+logo_url: "/mazzr.png"
+
+media_folder: "public/images"
+public_folder: "/images"
+
+# Enable local backend during development
+local_backend: true
+
+collections:
+  - name: "data"
+    label: "Website Data"
+    files:
+      - label: "Deals"
+        name: "deals"
+        file: "src/data/deals.json"
+        fields:
+          - label: "Deals List"
+            name: "deals"
+            widget: "list"
+            fields:
+              - {label: "ID", name: "id", widget: "number"}
+              - {label: "Category", name: "category", widget: "select", options: ["tech", "subs", "health", "digital", "travel", "courses", "games", "hosting"]}
+              - {label: "Brand", name: "brand", widget: "string"}
+              - {label: "Title (English)", name: "titleEn", widget: "string"}
+              - {label: "Title (Arabic)", name: "titleAr", widget: "string"}
+              - {label: "Description (English)", name: "descEn", widget: "text"}
+              - {label: "Description (Arabic)", name: "descAr", widget: "text"}
+              - {label: "Discount Badge Text", name: "discount", widget: "string"}
+              - {label: "Promo Code", name: "code", widget: "string", required: false}
+              - {label: "Affiliate Link", name: "link", widget: "string"}
+              - {label: "Is Flash Deal?", name: "isFlash", widget: "boolean", default: false}
+              - {label: "Rating", name: "rating", widget: "number", value_type: "float"}
+              - {label: "Number of Reviews", name: "reviews", widget: "number"}
+              - {label: "FOMO Badge (Optional)", name: "fomo", widget: "string", required: false}
