@@ -868,13 +868,18 @@ export default function App() {
                            exit={{ opacity: 0, scale: 0.95 }}
                            key={deal.id}
                            className={`bg-slate-50 rounded-2xl p-5 border shadow-sm hover:-translate-y-1.5 hover:scale-[1.02] hover:shadow-[0_12px_30px_-10px_rgba(81,24,69,0.15)] transition-all duration-300 flex flex-col relative overflow-hidden group ${
-                             deal.brand === 'AliExpress' 
+                             deal.brand === 'AliExpress' || deal.brand === 'Alibaba'
                                ? 'border-orange-200 ring-2 ring-orange-100 ring-opacity-50' 
+                               : deal.brand === 'Blueberry Markets'
+                               ? 'border-blue-200 ring-2 ring-blue-100 ring-opacity-50 bg-slate-900 text-white'
                                : 'border-slate-200/60 hover:border-purple-200'
                            }`}
                          >
-                           {deal.brand === 'AliExpress' && (
+                           {(deal.brand === 'AliExpress' || deal.brand === 'Alibaba') && (
                              <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange-400 to-red-500 z-30" />
+                           )}
+                           {deal.brand === 'Blueberry Markets' && (
+                             <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-400 to-indigo-600 z-30" />
                            )}
                            <SchemaMarkup deal={deal} />
                            
@@ -889,8 +894,10 @@ export default function App() {
                                  </div>
                                </div>
                                <div className={`px-2.5 py-1 rounded-md text-[10px] font-black uppercase tracking-wider relative z-20 shadow-sm transition-transform group-hover:scale-105 ${
-                                 deal.brand === 'AliExpress' 
+                                 deal.brand === 'AliExpress' || deal.brand === 'Alibaba'
                                    ? 'bg-orange-600 text-white' 
+                                   : deal.brand === 'Blueberry Markets'
+                                   ? 'bg-blue-600 text-white'
                                    : 'bg-orange-50 text-orange-600'
                                }`}>
                                  {deal.discount}
@@ -908,7 +915,7 @@ export default function App() {
                                </div>
                              )}
 
-                             <h3 className="font-bold text-lg text-slate-900 mb-1 leading-snug">
+                             <h3 className={`font-bold text-lg mb-1 leading-snug ${deal.brand === 'Blueberry Markets' ? 'text-white' : 'text-slate-900'}`}>
                                {isAr ? deal.titleAr : deal.titleEn}
                              </h3>
 
@@ -922,7 +929,7 @@ export default function App() {
                                <span className="text-[10px] font-semibold text-slate-400">({deal.reviews.toLocaleString()})</span>
                              </div>
 
-                             <p className="text-sm text-slate-500 mb-6 flex-grow leading-relaxed">
+                             <p className={`text-sm mb-6 flex-grow leading-relaxed ${deal.brand === 'Blueberry Markets' ? 'text-blue-100' : 'text-slate-500'}`}>
                                {isAr ? deal.descAr : deal.descEn}
                              </p>
 
