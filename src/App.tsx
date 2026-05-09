@@ -36,6 +36,7 @@ import {
 } from 'lucide-react';
 
 import dealsData from './data/deals.json';
+import settingsData from './data/settings.json';
 
 // --- DICTIONARY & TRANSLATIONS ---
 type Lang = 'en' | 'ar';
@@ -102,7 +103,8 @@ const t = {
     usedTimes: "Used",
     timesToday: "times today",
     verifiedBy: "Verified by Mazzr Team",
-    trendingSearches: "Trending Searches:"
+    trendingSearches: "Trending Searches:",
+    usersCount: "Happy Users"
   },
   ar: {
     logo: "مازر",
@@ -164,7 +166,8 @@ const t = {
     usedTimes: "تم الاستخدام",
     timesToday: "مرة اليوم",
     verifiedBy: "مضمّن من فريق مازر",
-    trendingSearches: "الأكثر بحثاً:"
+    trendingSearches: "الأكثر بحثاً:",
+    usersCount: "مستفيد سعيد"
   }
 };
 
@@ -176,6 +179,7 @@ const CATEGORIES = [
   { id: 'games', icon: Gamepad2, en: 'Games', ar: 'ألعاب' },
   { id: 'subs', icon: CreditCard, en: 'Subscriptions', ar: 'اشتراكات' },
   { id: 'travel', icon: Plane, en: 'Travel', ar: 'سفر' },
+  { id: 'trading', icon: Activity, en: 'Trading', ar: 'تداول' },
   { id: 'insurance', icon: ShieldCheck, en: 'Insurance', ar: 'تأمين' },
   { id: 'courses', icon: Check, en: 'Courses', ar: 'كورسات' },
   { id: 'hosting', icon: Globe, en: 'Hosting', ar: 'استضافة' },
@@ -197,6 +201,70 @@ const DEALS = DEALS_RAW.map(d => {
 });
 
 // --- COMPONENTS ---
+
+const Ticker = ({ lang }: { lang: Lang }) => {
+  const messages = lang === 'ar' ? settingsData.tickerAr : settingsData.tickerEn;
+  return (
+    <div className="bg-purple-600 text-white py-2 overflow-hidden whitespace-nowrap relative">
+      <div className="inline-block animate-ticker">
+        {messages.map((msg, i) => (
+          <span key={i} className="mx-8 font-bold text-sm uppercase tracking-wider">
+            {msg} •
+          </span>
+        ))}
+        {/* Duplicate for seamless loop */}
+        {messages.map((msg, i) => (
+          <span key={`dup-${i}`} className="mx-8 font-bold text-sm uppercase tracking-wider">
+            {msg} •
+          </span>
+        ))}
+      </div>
+      <style dangerouslySetInnerHTML={{ __html: `
+        @keyframes ticker {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+        .animate-ticker {
+          display: inline-block;
+          animation: ticker 30s linear infinite;
+        }
+        [dir="rtl"] .animate-ticker {
+          animation: ticker-rtl 30s linear infinite;
+        }
+        @keyframes ticker-rtl {
+          0% { transform: translateX(0); }
+          100% { transform: translateX(50%); }
+        }
+      `}} />
+    </div>
+  );
+};
+
+const DynamicUserCounter = ({ lang }: { lang: Lang }) => {
+  const [count, setCount] = useState(settingsData.baseUserCount);
+  
+  useEffect(() => {
+    const startTime = new Date().setHours(0,0,0,0);
+    const now = new Date().getTime();
+    const secondsSinceMidnight = Math.floor((now - startTime) / 1000);
+    const growthPerSecond = settingsData.growthRate / (24 * 3600);
+    
+    setCount(settingsData.baseUserCount + Math.floor(secondsSinceMidnight * growthPerSecond * 100));
+
+    const interval = setInterval(() => {
+      setCount(prev => prev + Math.floor(Math.random() * 3));
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  return (
+    <div className="flex items-center gap-2 bg-white/10 backdrop-blur-md px-4 py-2 rounded-2xl border border-white/20">
+      <div className="w-2 h-2 bg-green-400 rounded-full animate-pulse"></div>
+      <span className="font-mono font-bold text-lg">{count.toLocaleString()}</span>
+      <span className="text-xs font-medium opacity-80">{t[lang].usersCount}</span>
+    </div>
+  );
+};
 
 const SchemaMarkup = ({ deal }: { deal: typeof DEALS[0] }) => {
   const schema = {
@@ -661,6 +729,7 @@ export default function App() {
          </motion.div>
        )}
 
+       <Ticker lang={lang} />
        {/* HEADER */}
        <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
          <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
@@ -712,10 +781,19 @@ export default function App() {
                    initial={{ opacity: 0, y: 20 }}
                    animate={{ opacity: 1, y: 0 }}
                    transition={{ delay: 0.1 }}
-                   className="text-lg md:text-xl text-slate-300 font-medium mb-10 max-w-2xl mx-auto"
+                   className="text-lg md:text-xl text-slate-300 font-medium mb-6 max-w-2xl mx-auto"
                  >
                    {t[lang].heroSubtitle}
                  </motion.p>
+                 
+                 <motion.div
+                   initial={{ opacity: 0, scale: 0.9 }}
+                   animate={{ opacity: 1, scale: 1 }}
+                   transition={{ delay: 0.15 }}
+                   className="mb-10"
+                 >
+                   <DynamicUserCounter lang={lang} />
+                 </motion.div>
                  
                  <motion.div 
                    initial={{ opacity: 0, y: 20 }}
@@ -980,7 +1058,7 @@ export default function App() {
                                   : 'bg-slate-900 hover:bg-purple-600 hover:shadow-purple-500/20 text-white'
                                }`}
                              >
-                               {deal.code ? t[lang].getDealCode : t[lang].getDeal} 
+                               {isAr ? (deal.btnTextAr || (deal.code ? t[lang].getDealCode : t[lang].getDeal)) : (deal.btnTextEn || (deal.code ? t[lang].getDealCode : t[lang].getDeal))} 
                                <ArrowRight className={`w-4 h-4 transition-transform group-hover/btn:translate-x-1 ${isAr ? 'rotate-180 group-hover/btn:-translate-x-1' : ''}`} />
                              </a>
                              
