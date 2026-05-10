@@ -680,6 +680,27 @@ export default function SmartTools({ lang, t }: { lang: 'en'|'ar', t: any }) {
                 const Content = ActiveToolObj.Content;
                 return <Content isAr={isAr} />;
              })()}
+
+             {/* IN-TOOL SPONSOR BANNER */}
+             <div className="mt-8 pt-6 border-t border-slate-100">
+               <div className="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-4 border border-amber-200 flex flex-col sm:flex-row items-center justify-between gap-4">
+                 <div className="flex flex-col gap-1">
+                   <span className="text-[10px] font-black uppercase tracking-wider text-amber-700">{isAr ? 'رعاية مميزة' : 'Premium Sponsor'}</span>
+                   <p className="text-sm font-bold text-amber-900">
+                     {isAr ? 'أداة الأداء المتقدمة — حسّن جهازك بخصم حصري' : 'Advanced Performance Tool — Boost your device with exclusive discount'}
+                   </p>
+                 </div>
+                 <a
+                   href="https://bony-teaching.com/bh3NVS0.P/3MpWvubJm/VXJ-ZSDv0s3mMaDCMvxmN/T-QE1OL/TDcDwbMEzvEi1/N/D-kN"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   referrerPolicy="no-referrer-when-downgrade"
+                   className="shrink-0 bg-orange-600 hover:bg-orange-500 text-white font-bold px-5 py-2.5 rounded-xl text-sm transition-all shadow-sm whitespace-nowrap"
+                 >
+                   {isAr ? 'اكتشف الآن' : 'Explore Now'}
+                 </a>
+               </div>
+             </div>
              
           </motion.div>
         )}

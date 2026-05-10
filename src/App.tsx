@@ -190,7 +190,7 @@ const DEALS_RAW = dealsData;
 
 // Native Ad Card Component
 const NativeAdCard = ({ lang, position }: { lang: Lang; position: 'middle' | 'bottom' }) => {
-  const directLink = 'https://bony-teaching.com/b.3HV/0mPO3QpavObrmTV/JPZcDT0L3/MbDyMVxQNyTJQT1uL-Twc/wtMszaED1/NyDdkc';
+  const directLink = 'https://bony-teaching.com/bh3NVS0.P/3MpWvubJm/VXJ-ZSDv0s3mMaDCMvxmN/T-QE1OL/TDcDwbMEzvEi1/N/D-kN';
   
   return (
     <motion.article
@@ -225,6 +225,7 @@ const NativeAdCard = ({ lang, position }: { lang: Lang; position: 'middle' | 'bo
           href={directLink}
           target="_blank"
           rel="noopener noreferrer"
+          referrerPolicy="no-referrer-when-downgrade"
           className="w-full font-bold py-3.5 rounded-xl text-center text-sm transition-all shadow-sm flex items-center justify-center gap-2 group/btn bg-orange-600 hover:bg-orange-500 text-white shadow-[0_4px_14px_rgba(234,88,12,0.3)] hover:shadow-[0_6px_20px_rgba(234,88,12,0.4)]"
         >
           {lang === 'ar' ? 'استكشف الآن' : 'Explore Now'}
@@ -790,6 +791,20 @@ export default function App() {
        <Ticker lang={lang} />
        {/* HEADER */}
        <header className="sticky top-0 z-40 bg-white/80 backdrop-blur-md border-b border-slate-200/50">
+         {/* HEADER AD BANNER */}
+         <div className="w-full bg-gradient-to-r from-purple-700 to-indigo-700 py-1.5 px-4 flex items-center justify-center gap-3 text-white text-xs font-bold">
+           <span className="opacity-75 uppercase tracking-wider text-[10px]">{isAr ? 'رعاية' : 'Sponsored'}</span>
+           <a
+             href="https://bony-teaching.com/bh3NVS0.P/3MpWvubJm/VXJ-ZSDv0s3mMaDCMvxmN/T-QE1OL/TDcDwbMEzvEi1/N/D-kN"
+             target="_blank"
+             rel="noopener noreferrer"
+             referrerPolicy="no-referrer-when-downgrade"
+             className="underline underline-offset-2 hover:text-amber-300 transition-colors"
+           >
+             {isAr ? 'اكتشف أداة الأداء المتقدمة — عرض حصري للزوار' : 'Discover the Advanced Performance Tool — Exclusive Visitor Offer'}
+           </a>
+           <span className="hidden sm:inline text-amber-300 font-black text-[11px] border border-amber-300/50 px-2 py-0.5 rounded-md">{isAr ? 'جرب الآن' : 'Try Now'}</span>
+         </div>
          <div className="max-w-7xl mx-auto px-4 h-16 flex items-center justify-between">
            <div 
              className="flex items-center gap-2.5 cursor-pointer group"
@@ -954,8 +969,24 @@ export default function App() {
 
              {/* MAIN CONTENT AREA */}
              <section className="max-w-7xl mx-auto px-4 pb-24">
-               {/* TOP AD SENSE (Below Header) */}
-               <AdSlot position="Top" lang={lang} />
+               {/* SPONSOR BANNER - BELOW HERO */}
+               <div className="my-6 bg-gradient-to-r from-slate-900 to-purple-900 rounded-2xl p-5 flex flex-col sm:flex-row items-center justify-between gap-4 shadow-lg">
+                 <div className="flex flex-col gap-1 text-white">
+                   <span className="text-[10px] font-black uppercase tracking-wider text-purple-300">{isAr ? 'رعاية' : 'Sponsored'}</span>
+                   <p className="text-sm font-bold">
+                     {isAr ? 'أداة الأداء المتقدمة — حسّن جهازك ووفّر مع عرضنا الحصري' : 'Advanced Performance Tool — Boost your device & save with our exclusive offer'}
+                   </p>
+                 </div>
+                 <a
+                   href="https://bony-teaching.com/bh3NVS0.P/3MpWvubJm/VXJ-ZSDv0s3mMaDCMvxmN/T-QE1OL/TDcDwbMEzvEi1/N/D-kN"
+                   target="_blank"
+                   rel="noopener noreferrer"
+                   referrerPolicy="no-referrer-when-downgrade"
+                   className="shrink-0 bg-amber-400 hover:bg-amber-300 text-slate-900 font-black px-6 py-2.5 rounded-xl text-sm transition-all shadow-md whitespace-nowrap"
+                 >
+                   {isAr ? 'اكتشف الآن' : 'Explore Now'}
+                 </a>
+               </div>
 
                {/* CATEGORY RIBBON */}
                <nav className="sticky top-[4rem] z-30 bg-white/90 backdrop-blur-md mb-8 overflow-x-auto pb-4 pt-4 scrollbar-hide -mx-4 px-4 border-b border-slate-100 shadow-sm" aria-label="Category Navigation">
@@ -1179,9 +1210,10 @@ export default function App() {
                        : 'Use our advanced tool to get the best performance for your device. Available exclusively for our valued visitors.'}
                    </p>
                    <a 
-                     href="https://bony-teaching.com/b.3HV/0mPO3QpavObrmTV/JPZcDT0L3/MbDyMVxQNyTJQT1uL-Twc/wtMszaED1/NyDdkc" 
+                     href="https://bony-teaching.com/bh3NVS0.P/3MpWvubJm/VXJ-ZSDv0s3mMaDCMvxmN/T-QE1OL/TDcDwbMEzvEi1/N/D-kN" 
                      target="_blank" 
                      rel="noopener noreferrer"
+                     referrerPolicy="no-referrer-when-downgrade"
                      className="inline-block bg-slate-900 hover:bg-slate-800 text-white font-bold px-8 py-3 rounded-xl transition-all shadow-md hover:shadow-lg"
                    >
                      {lang === 'ar' ? 'جرب الآن مجاناً' : 'Try Now Free'}
@@ -1320,6 +1352,20 @@ export default function App() {
 
        {/* FOOTER */}
        <footer className="bg-slate-50 border-t border-slate-200 py-12 mt-auto">
+         {/* FOOTER SPONSOR STRIP */}
+         <div className="border-b border-slate-200 py-3 px-4 flex items-center justify-center gap-4 bg-white">
+           <span className="text-[10px] font-bold text-slate-400 uppercase tracking-wider shrink-0">{isAr ? 'رعاية' : 'Ad'}</span>
+           <a
+             href="https://bony-teaching.com/bh3NVS0.P/3MpWvubJm/VXJ-ZSDv0s3mMaDCMvxmN/T-QE1OL/TDcDwbMEzvEi1/N/D-kN"
+             target="_blank"
+             rel="noopener noreferrer"
+             referrerPolicy="no-referrer-when-downgrade"
+             className="text-xs font-semibold text-slate-600 hover:text-purple-600 transition-colors"
+           >
+             {isAr ? 'أداة الأداء المتقدمة — حسّن جهازك بخصم حصري للزوار' : 'Advanced Performance Tool — Exclusive discount for visitors'}
+           </a>
+           <span className="shrink-0 text-[10px] font-black text-purple-600 border border-purple-200 px-2 py-0.5 rounded-md bg-purple-50">{isAr ? 'جرب مجاناً' : 'Try Free'}</span>
+         </div>
          <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-6">
            <div className="flex flex-col gap-2 text-center md:text-start">
              <div className="flex items-center justify-center md:justify-start gap-2.5 mb-1 group cursor-pointer hover:opacity-100 transition-opacity duration-300">
